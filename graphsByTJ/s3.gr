@@ -1,0 +1,41 @@
+c FILE			: s3.gr
+c No. of vertices	: 8
+c No. of directed edges	: 33
+c Max. weight		: 8
+c Min. weight		: 0
+c A directed arc from u to v of weight w
+c is represented below as ' a  u  v  w '
+p sp 8 33
+a 1 5 5
+a 1 5 0
+a 1 5 1
+a 1 7 0
+a 1 7 1
+a 1 6 3
+a 2 4 5
+a 2 4 1
+a 3 7 5
+a 3 7 7
+a 3 7 5
+a 3 6 4
+a 3 1 7
+a 3 1 0
+a 4 1 7
+a 4 1 4
+a 4 3 0
+a 5 1 5
+a 5 1 5
+a 5 1 5
+a 5 8 0
+a 5 8 6
+a 5 2 1
+a 6 5 1
+a 6 5 1
+a 6 8 0
+a 7 3 5
+a 7 3 2
+a 7 3 7
+a 7 2 4
+a 7 5 4
+a 8 3 3
+a 8 3 1
