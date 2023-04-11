@@ -19,7 +19,7 @@ def dijkstra_with_path(graph, start):
     distances[start] = 0
     paths = {start: [start]}
     heap = [(0, start)]
-
+    steps = 0
     while heap:
         (dist, vertex) = heapq.heappop(heap)
 
@@ -37,7 +37,7 @@ def dijkstra_with_path(graph, start):
                 paths[neighbor] = paths[vertex] + [neighbor]
                 heapq.heappush(heap, (tentative_distance, neighbor))
 
-    return distances, paths
+    return distances, paths, steps
 
 
 # # testing the algorithm
@@ -50,6 +50,6 @@ graph = {
 
 start_node = 'A'
 
-shortest_distances = dijkstra(graph, start_node)
+shortest_distances = dijkstra_with_path(graph, start_node)
 
 print(shortest_distances)

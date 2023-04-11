@@ -15,6 +15,7 @@ AIRPORTS_FILE = "airports.txt"
 
 # read the data
 
+
 def open_data(filename, n):
     # reads the data from the file
     # returns a graph of the form: {node: {neighbor: cost}}
@@ -25,9 +26,9 @@ def open_data(filename, n):
 
     # open the file
     replace_Count = 0
-    with open(filename, 'r') as f:
+    with open(filename, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-    with open(AIRPORTS_FILE, 'r') as f:
+    with open(AIRPORTS_FILE, 'r', encoding='utf-8') as f:
         airports = f.readlines()
     airports_dict = {}
     # has a list of coordinates for each airport
@@ -35,7 +36,8 @@ def open_data(filename, n):
     # and the code of the airport
     for airport in airports:
         airport = airport.split(",")
-        airports_dict[airport[0]] = [airport[1], float(airport[-8]), float(airport[-7])]
+        airports_dict[airport[0]] = [airport[1],
+                                     float(airport[-8]), float(airport[-7])]
     # print("Number of airports: ", len(airports_dict))
     # print("Number of lines in the file: ", len(lines))
     graph = {}
@@ -54,27 +56,31 @@ def open_data(filename, n):
             # if the flight is direct
             # add the edge to the graph
             # the cost is the distance between the airports
-            #print(line[3], line[5])
+            # print(line[3], line[5])
             if line[5] == "\\N":
                 continue
             if line[3] not in graph:
-                weight = ((float(airports_dict[line[3]][1]) - float(airports_dict[line[5]][1])) ** 2 + (float(airports_dict[line[3]][2]) - float(airports_dict[line[5]][2])) ** 2) ** 0.5
+                weight = ((float(airports_dict[line[3]][1]) - float(airports_dict[line[5]][1])) ** 2 + (
+                    float(airports_dict[line[3]][2]) - float(airports_dict[line[5]][2])) ** 2) ** 0.5
                 graph[line[3]] = {line[5]: weight}
             else:
                 if line[5] not in graph[line[3]]:
-                    weight = ((float(airports_dict[line[3]][1]) - float(airports_dict[line[5]][1])) ** 2 + (float(airports_dict[line[3]][2]) - float(airports_dict[line[5]][2])) ** 2) ** 0.5
+                    weight = ((float(airports_dict[line[3]][1]) - float(airports_dict[line[5]][1])) ** 2 + (
+                        float(airports_dict[line[3]][2]) - float(airports_dict[line[5]][2])) ** 2) ** 0.5
                     graph[line[3]][line[5]] = weight
                 else:
-                    weight = ((float(airports_dict[line[3]][1]) - float(airports_dict[line[5]][1])) ** 2 + (float(airports_dict[line[3]][2]) - float(airports_dict[line[3]][2])) ** 2) ** 0.5
+                    weight = ((float(airports_dict[line[3]][1]) - float(airports_dict[line[5]][1])) ** 2 + (
+                        float(airports_dict[line[3]][2]) - float(airports_dict[line[3]][2])) ** 2) ** 0.5
                     if graph[line[3]][line[5]] > weight:
                         graph[line[3]][line[5]] = weight
                         replace_Count = replace_Count + 1
             if line[5] not in graph:
                 graph[line[5]] = {}
     # print("Number of nodes in the graph: ", len(graph))
-    #print("replace_Count: ", replace_Count)
-    #print(graph)
+    # print("replace_Count: ", replace_Count)
+    # print(graph)
     return graph, airports_dict
+
 
 def open_data_g(fname):
     with open(fname, 'r') as f:
@@ -89,19 +95,19 @@ def open_data_g(fname):
         if line[2] not in graph:
             graph[line[2]] = {}
     return graph
-test_graph , test_airports = open_data("routes.txt", 300000)
+
+
+test_graph, test_airports = open_data("routes.txt", 300000)
 
 # run dijkstra's algorithm
 # print the path from the source to the destination
-#print(test_graph["1"])
+# print(test_graph["1"])
 # distances = dijkstra.dijkstra(test_graph, "1")
 # #print(distances)
 # path = dijkstra.get_shortest_paths(test_graph, distances, "1")
 
 # print the path from the source to the destination
 distances, paths, steps = dijkstra.dijkstra_with_path(test_graph, "1")
-print(paths)
-print("Distance from 1 to 675: ", distances["675"])
-print(steps)
-
-
+# print(paths)
+# print("Distance from 1 to 675: ", distances["675"])
+# print(steps)
