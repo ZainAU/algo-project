@@ -36,8 +36,8 @@ def analyse(fname, n):
         # append the number of steps to y_cordinates
         time_taken = end_time-start_time
         y_cordinates.append(end_time-start_time)
-        print("Number of nodes: ", len(graph),
-              "Number of steps/timetaken: ", time_taken)
+        # print("Number of nodes: ", len(graph),
+        #   "Number of steps/timetaken: ", time_taken)
 
     return x_cordinates, y_cordinates
 
